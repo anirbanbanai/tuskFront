@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* * {
+  background: #e0e0e0;
+} */
+
+.radio-container {
+  position: relative;
+  display: inline-block;
+  font-size: 16px; /* Adjust font size as needed */
+}
+
+.radio-custom {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px; /* Adjust size of the radio button */
+  height: 20px; /* Adjust size of the radio button */
+  background-color: transparent;
+  border: 2px solid #ff0000; /* Adjust border color */
+  border-radius: 50%; /* Make it a circle */
+}
+
+input[type="radio"]:checked + .radio-custom::after {
+  content: "";
+  position: absolute;
+  top: 3px; /* Adjust position of the inner circle */
+  left: 3px; /* Adjust position of the inner circle */
+  width: 12px; /* Adjust size of the inner circle */
+  height: 12px; /* Adjust size of the inner circle */
+  background-color: #ff0000; /* Adjust inner circle color */
+  border-radius: 50%; /* Make it a circle */
+}
