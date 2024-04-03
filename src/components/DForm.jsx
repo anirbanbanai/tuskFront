@@ -1,4 +1,4 @@
-import { Checkbox ,Button} from "@material-tailwind/react";
+import { Checkbox, Button } from "@material-tailwind/react";
 import { RxUpdate } from "react-icons/rx";
 import { CiEdit } from "react-icons/ci";
 import { TiArrowSortedDown } from "react-icons/ti";
@@ -13,9 +13,10 @@ const DForm = () => {
   const [value, setValue] = useState("0");
   const [valueShare, setValueShare] = useState("0");
   const [nationShare, setNationShare] = useState("0");
+  const [insd, setInsd] = useState("0");
   const [nation, setNation] = useState("0");
   const [tissues, setTIssues] = useState("0");
-  const [affected, setAffected] = useState("0");
+  const [insident, setInsident] = useState("0");
   const [categoryFeedback, setCategoryFeedback] = useState("0");
   const [feedbackProjectIssues, setFeedbackProjectIssues] = useState("0");
   const [feedbackDepartmentIssues, setFeedbackDepartmentIssues] = useState("0");
@@ -25,9 +26,14 @@ const DForm = () => {
   const [disability, setDisability] = useState("0");
   const [kinddisability, setkindDisability] = useState("0");
 
+
   const handleFeedbackCheckboxChange = (value) => {
     setSelectedOption(value);
   };
+  const handleInsidentCheckboxChange = (value) => {
+    setInsident(value);
+  };
+ 
   const handleShareCheckboxChange = (value) => {
     setShareinfo(value);
   };
@@ -43,9 +49,7 @@ const DForm = () => {
   const handleTIssuesCheckboxChange = (value) => {
     setTIssues(value);
   };
-  const handleAffectedCheckboxChange = (value) => {
-    setAffected(value);
-  };
+  
   const handleCategoryFeedbackCheckboxChange = (value) => {
     setCategoryFeedback(value);
   };
@@ -71,7 +75,11 @@ const DForm = () => {
     setkindDisability(value);
   };
 
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const onSubmit = (data) => {
     // if (data.feedbackchannel == [" "]) {
     //   data.feedbackchannel = data.feedbackchannel.join(", ");
@@ -95,10 +103,14 @@ const DForm = () => {
             <input
               className=" peer w-2/4 h-full bg-transparent text-blue-gray-700 font-sans font-normal outline outline-0 focus:outline-0 disabled:bg-blue-gray-50 disabled:border-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 border focus:border-2 border-t-transparent  text-sm px-3 py-2.5 rounded-[7px] border-blue-gray-200 focus:border-gray-900"
               placeholder=" yyyy-mm-dd"
-              {...register("Feedback_received_by_Date")}
+              type="date"
+              {...register("Feedback_received_by_Date", { required: true })}
             />
             <RxUpdate className="text-3xl" />
           </div>
+          {errors.name && errors.name.type === "required" && (
+            <span>This is required</span>
+          )}
         </div>
 
         <div className="flex flex-col  mb-5">
@@ -109,7 +121,7 @@ const DForm = () => {
           <input
             className=" peer w-3/4 h-full  font-sans  placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200  border-t-transparent  text-sm px-3 py-2.5 rounded-[7px] border-blue-gray-200 focus:border-gray-900"
             placeholder=" "
-            {...register("Feedback_received_by_name")}
+            {...register("Feedback_received_by_name", { required: true })}
           />
         </div>
         <div className="flex flex-col mb-5 ">
@@ -119,7 +131,7 @@ const DForm = () => {
           <input
             className=" peer w-3/4 h-full  font-sans  placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200  border-t-transparent  text-sm px-3 py-2.5 rounded-[7px] border-blue-gray-200 focus:border-gray-900"
             placeholder=" "
-            {...register("designation")}
+            {...register("designation", { required: true })}
           />
         </div>
 
@@ -434,20 +446,18 @@ const DForm = () => {
                     onChange={() => handleNationCheckboxChange("Foreigner")}
                   />
                 </div>
-                {
-                  nationShare==="1" && (
-                    <div className="flex flex-col  mb-5">
-          <label htmlFor="" className="text-black font-semibold mb-2">
-          Please specify your country
-          </label>
-          <input
-            className=" peer w-3/4 h-full  font-sans  placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200  border-t-transparent  text-sm px-3 py-2.5 rounded-[7px] border-blue-gray-200 focus:border-gray-900"
-            placeholder=" "
-            {...register("Country_Name")}
-          />
-        </div>
-                  )
-                }
+                {nationShare === "1" && (
+                  <div className="flex flex-col  mb-5">
+                    <label htmlFor="" className="text-black font-semibold mb-2">
+                      Please specify your country
+                    </label>
+                    <input
+                      className=" peer w-3/4 h-full  font-sans  placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200  border-t-transparent  text-sm px-3 py-2.5 rounded-[7px] border-blue-gray-200 focus:border-gray-900"
+                      placeholder=" "
+                      {...register("Country_Name")}
+                    />
+                  </div>
+                )}
                 {/* TODO  foreigner others kaj*/}
               </div>
               <div>
@@ -572,29 +582,45 @@ Service request"
             }
           />
         </div>
+
         <div className="flex flex-col mb-5 ">
           <label htmlFor="" className="text-black font-semibold mb-2">
             <span className="text-3xl text-blue-400">*</span> People affected by
             the incidence
           </label>
           <Checkbox
-            color="blue"
-            label="Individual"
-            value="Individual"
-            onClick={() => setValue("0")}
-            {...register("AffectedBy")}
-            checked={affected === "Individual"}
-            onChange={() => handleAffectedCheckboxChange("Individual")}
-          />
+                    color="blue"
+                    label="Individual"
+                    value="Individual"
+                    onClick={() => setInsd("0")}
+                    {...register("AffectedBy")}
+                    checked={insident === "Individual"}
+                    onChange={() => handleInsidentCheckboxChange("Individual")}
+                  />
           <Checkbox
-            color="blue"
-            label="Community"
-            value="Community"
-            onClick={() => setValue("0")}
-            {...register("AffectedBy")}
-            checked={tissues === "Community"}
-            onChange={() => handleAffectedCheckboxChange("Community")}
-          />
+                    color="blue"
+                    label="Community"
+                    value="Community"
+                    onClick={() => setInsd("1")}
+                    {...register("AffectedBy")}
+                    checked={insident === "Community"}
+                    onChange={() => handleInsidentCheckboxChange("Community")}
+                  />
+         
+
+          {insd === "1" &&(
+             <div className="flex flex-col  mb-5">
+             <label htmlFor="" className="text-black font-semibold mb-2">
+            <span className="text-3xl text-blue-500">*</span> Number of people affected
+             </label>
+             <input
+               className=" peer w-3/4 h-full  font-sans  placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200  border-t-transparent  text-sm px-3 py-2.5 rounded-[7px] border-blue-gray-200 focus:border-gray-900"
+               placeholder=" "
+               {...register("Remark")}
+             />
+           </div>
+          )}
+
         </div>
         <div className="flex flex-col mb-5 ">
           <label htmlFor="" className="text-black font-semibold mb-2">
@@ -1060,8 +1086,6 @@ Service request"
             checked={disability === "No"}
             onChange={() => handleDisabilityCheckboxChange("No")}
           />
-
-          
         </div>
         <div className="flex flex-col mb-5 ">
           <label htmlFor="" className="text-black font-semibold mb-2">
@@ -1124,7 +1148,6 @@ Service request"
             checked={kinddisability === "Communication"}
             onChange={() => handleKindDisabilityCheckboxChange("Communication")}
           />
-
         </div>
 
         <div className="flex flex-col  mb-5">
@@ -1147,12 +1170,11 @@ Service request"
             size="lg"
             className="flex gap-1 items-center"
             variant="outlined"
-            
           >
             <CiEdit className="text-3xl" /> Save as Draft
-          </Button> 
+          </Button>
 
-           <Button type="submit" size="lg" variant="" color="blue">
+          <Button type="submit" size="lg" variant="" color="blue">
             Submit
           </Button>
         </div>
