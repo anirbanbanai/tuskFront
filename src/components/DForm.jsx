@@ -12,6 +12,7 @@ const DForm = () => {
   const [age, setAge] = useState("0");
   const [value, setValue] = useState("0");
   const [valueShare, setValueShare] = useState("0");
+  const [nationShare, setNationShare] = useState("0");
   const [nation, setNation] = useState("0");
   const [tissues, setTIssues] = useState("0");
   const [affected, setAffected] = useState("0");
@@ -418,7 +419,7 @@ const DForm = () => {
                     color="blue"
                     label="Bangladeshi"
                     value="Bangladeshi"
-                    onClick={() => setValueShare("0")}
+                    onClick={() => setNationShare("0")}
                     {...register("nationality")}
                     checked={nation === "Bangladeshi"}
                     onChange={() => handleNationCheckboxChange("Bangladeshi")}
@@ -427,12 +428,26 @@ const DForm = () => {
                     color="blue"
                     label="Foreigner"
                     value="Foreigner"
-                    onClick={() => setValueShare("1")}
+                    onClick={() => setNationShare("1")}
                     {...register("nationality")}
                     checked={nation === "Foreigner"}
                     onChange={() => handleNationCheckboxChange("Foreigner")}
                   />
                 </div>
+                {
+                  nationShare==="1" && (
+                    <div className="flex flex-col  mb-5">
+          <label htmlFor="" className="text-black font-semibold mb-2">
+          Please specify your country
+          </label>
+          <input
+            className=" peer w-3/4 h-full  font-sans  placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200  border-t-transparent  text-sm px-3 py-2.5 rounded-[7px] border-blue-gray-200 focus:border-gray-900"
+            placeholder=" "
+            {...register("Country_Name")}
+          />
+        </div>
+                  )
+                }
                 {/* TODO  foreigner others kaj*/}
               </div>
               <div>
