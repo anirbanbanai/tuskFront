@@ -17,7 +17,6 @@ const DForm = () => {
   const [nationShare, setNationShare] = useState("0");
   const [insd, setInsd] = useState("0");
   const [BDRCS, setBDRCS] = useState("0");
-  console.log(BDRCS);
   const [nation, setNation] = useState("0");
   const [tissues, setTIssues] = useState("0");
   const [insident, setInsident] = useState("0");
@@ -96,8 +95,8 @@ const DForm = () => {
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
-    // if (data.feedbackchannel == [" "]) {
-    //   data.feedbackchannel = data.feedbackchannel.join(", ");
+    // if (data.feedbackChannel == [" "]) {
+    //   data.feedbackChannel = data.feedbackChannel.join(", ");
     // }
     console.log(data);
   };
@@ -109,6 +108,7 @@ const DForm = () => {
       </h2>
 
       <form onSubmit={handleSubmit(onSubmit)} className="mt-8 p-5">
+
         <div className="flex flex-col mb-5">
           <label htmlFor="" className="text-black font-semibold mb-2">
             <span className="text-3xl text-blue-400">*</span> Feedback received
@@ -119,7 +119,7 @@ const DForm = () => {
               className=" peer w-2/4 h-full bg-transparent text-blue-gray-700 font-sans font-normal outline outline-0 focus:outline-0 disabled:bg-blue-gray-50 disabled:border-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 border focus:border-2 border-t-transparent  text-sm px-3 py-2.5 rounded-[7px] border-blue-gray-200 focus:border-gray-900"
               placeholder=" yyyy-mm-dd"
               type="date"
-              {...register("Feedback_received_by_Date", { required: true })}
+              {...register("recievedate", { required: true })}
             />
             <RxUpdate className="text-3xl" />
           </div>
@@ -136,9 +136,10 @@ const DForm = () => {
           <input
             className=" peer w-3/4 h-full  font-sans  placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200  border-t-transparent  text-sm px-3 py-2.5 rounded-[7px] border-blue-gray-200 focus:border-gray-900"
             placeholder=" "
-            {...register("Feedback_received_by_name", { required: true })}
+            {...register("recieveByName", { required: true })}
           />
         </div>
+        
         <div className="flex flex-col mb-5 ">
           <label htmlFor="" className="text-black font-semibold mb-3">
             <span className="text-3xl text-blue-400">*</span>Designation
@@ -159,7 +160,7 @@ const DForm = () => {
             color="blue"
             label="Community meeting"
             value="Community meeting"
-            {...register("feedbackchannel")}
+            {...register("feedbackChannel")}
             checked={selectedOption === "Community meeting"}
             onChange={() => handleFeedbackCheckboxChange("Community meeting")}
           />
@@ -167,7 +168,7 @@ const DForm = () => {
             color="blue"
             label="Face to face"
             value="tFace to face"
-            {...register("feedbackchannel")}
+            {...register("feedbackChannel")}
             checked={selectedOption === "Face to face"}
             onChange={() => handleFeedbackCheckboxChange("Face to face")}
           />
@@ -175,7 +176,7 @@ const DForm = () => {
             color="blue"
             label="Feedback Email"
             value="tFeedback Email"
-            {...register("feedbackchannel")}
+            {...register("feedbackChannel")}
             checked={selectedOption === "Feedback Email"}
             onChange={() => handleFeedbackCheckboxChange("Feedback Email")}
           />
@@ -183,7 +184,7 @@ const DForm = () => {
             color="blue"
             label="Hotline"
             value="Hotline"
-            {...register("feedbackchannel")}
+            {...register("feedbackChannel")}
             checked={selectedOption === "Hotline"}
             onChange={() => handleFeedbackCheckboxChange("Hotline")}
           />
@@ -191,7 +192,7 @@ const DForm = () => {
             color="blue"
             label="Information and feedback desk"
             value="tInformation and feedback desk"
-            {...register("feedbackchannel")}
+            {...register("feedbackChannel")}
             checked={selectedOption === "Information and feedback desk"}
             onChange={() =>
               handleFeedbackCheckboxChange("Information and feedback desk")
@@ -201,7 +202,7 @@ const DForm = () => {
             color="blue"
             label="Information and Feedback box"
             value="tInformation and Feedback box"
-            {...register("feedbackchannel")}
+            {...register("feedbackChannel")}
             checked={selectedOption === "Information and Feedback box"}
             onChange={() =>
               handleFeedbackCheckboxChange("Information and Feedback box")
@@ -211,7 +212,7 @@ const DForm = () => {
             color="blue"
             label="Information and feedback hub"
             value="tInformation and feedback hub"
-            {...register("feedbackchannel")}
+            {...register("feedbackChannel")}
             checked={selectedOption === "Information and feedback hub"}
             onChange={() =>
               handleFeedbackCheckboxChange("Information and feedback hub")
@@ -221,7 +222,7 @@ const DForm = () => {
             color="blue"
             label="Stakeholder consultation"
             value="tStakeholder consultation"
-            {...register("feedbackchannel")}
+            {...register("feedbackChannel")}
             checked={selectedOption === "Stakeholder consultation"}
             onChange={() =>
               handleFeedbackCheckboxChange("Stakeholder consultation")
@@ -232,7 +233,7 @@ const DForm = () => {
             label="Others"
             value="Others"
             onClick={() => setValue("1")}
-            {...register("feedbackchannel")}
+            {...register("feedbackChannel")}
             checked={selectedOption === "Others"}
             onChange={() => handleFeedbackCheckboxChange("Others")}
           ></Checkbox>
@@ -246,7 +247,7 @@ const DForm = () => {
               <input
                 className=" peer w-3/4 h-full  font-sans  placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200  border-t-transparent  text-sm px-3 py-2.5 rounded-[7px] border-blue-gray-200 focus:border-gray-900"
                 placeholder=" "
-                {...register("feedbackchannel")}
+                {...register("feedbackChannel")}
               />
             </div>
           )}
@@ -264,7 +265,7 @@ const DForm = () => {
             label="Yes"
             value="Yes"
             onClick={() => setValueShare("1")}
-            {...register("shareinformation")}
+            {...register("NameAgeNIDInfoShare")}
             checked={shareInfo === "Yes"}
             onChange={() => handleShareCheckboxChange("Yes")}
           />
@@ -273,7 +274,7 @@ const DForm = () => {
             label="No"
             value="No"
             onClick={() => setValueShare("0")}
-            {...register("shareinformation")}
+            {...register("NameAgeNIDInfoShare")}
             checked={shareInfo === "No"}
             onChange={() => handleShareCheckboxChange("No")}
           />
@@ -295,7 +296,7 @@ const DForm = () => {
                   <input
                     className=" peer w-3/4 h-full  font-sans  placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200  border-t-transparent  text-sm px-3 py-2.5 rounded-[7px] border-blue-gray-200 focus:border-gray-900"
                     placeholder=" "
-                    {...register("Feedback_received_by_name")}
+                    {...register("feedback_giver_name")}
                   />
                 </div>
               </div>
@@ -310,7 +311,7 @@ const DForm = () => {
                     color="blue"
                     label="Male"
                     value="Male"
-                    {...register("Gender")}
+                    {...register("feedback_giver_gender")}
                     checked={gender === "Male"}
                     onChange={() => handleGenderCheckboxChange("Male")}
                   />
@@ -318,7 +319,7 @@ const DForm = () => {
                     color="blue"
                     label="Female"
                     value="Female"
-                    {...register("Gender")}
+                    {...register('feedback_giver_gender')}
                     checked={gender === "Female"}
                     onChange={() => handleGenderCheckboxChange("Female")}
                   />
@@ -326,7 +327,7 @@ const DForm = () => {
                     color="blue"
                     label="Non-binary"
                     value="tNon-binary"
-                    {...register("Gender")}
+                    {...register('feedback_giver_gender')}
                     checked={gender === "Non-binary"}
                     onChange={() => handleGenderCheckboxChange("Non-binary")}
                   />
@@ -334,7 +335,7 @@ const DForm = () => {
                     color="blue"
                     label="Not interested to mention"
                     value="Not interested to mention"
-                    {...register("Gender")}
+                    {...register('feedback_giver_gender')}
                     checked={gender === "Not interested to mention"}
                     onChange={() =>
                       handleGenderCheckboxChange("Not interested to mention")
@@ -351,7 +352,7 @@ const DForm = () => {
                     color="blue"
                     label="0-9"
                     value="0-9"
-                    {...register("Age")}
+                    {...register('feedback_giver_age_category')}
                     checked={age === "0-9"}
                     onChange={() => handleAgeCheckboxChange("0-9")}
                   />
@@ -359,7 +360,7 @@ const DForm = () => {
                     color="blue"
                     label="10-19"
                     value="10-19"
-                    {...register("Age")}
+                    {...register('feedback_giver_age_category')}
                     checked={age === "10-19"}
                     onChange={() => handleAgeCheckboxChange("10-19")}
                   />
@@ -367,7 +368,7 @@ const DForm = () => {
                     color="blue"
                     label="20-29"
                     value="20-29"
-                    {...register("Age")}
+                    {...register('feedback_giver_age_category')}
                     checked={age === "20-29"}
                     onChange={() => handleAgeCheckboxChange("20-29")}
                   />
@@ -375,7 +376,7 @@ const DForm = () => {
                     color="blue"
                     label="30-39"
                     value="30-39"
-                    {...register("Age")}
+                    {...register('feedback_giver_age_category')}
                     checked={age === "30-39"}
                     onChange={() => handleAgeCheckboxChange("30-39")}
                   />
@@ -383,7 +384,7 @@ const DForm = () => {
                     color="blue"
                     label="40-49"
                     value="40-49"
-                    {...register("Age")}
+                    {...register('feedback_giver_age_category')}
                     checked={age === "40-49"}
                     onChange={() => handleAgeCheckboxChange("40-49")}
                   />
@@ -391,7 +392,7 @@ const DForm = () => {
                     color="blue"
                     label="50-59"
                     value="50-59"
-                    {...register("Age")}
+                    {...register('feedback_giver_age_category')}
                     checked={age === "50-59"}
                     onChange={() => handleAgeCheckboxChange("50-59")}
                   />
@@ -399,7 +400,7 @@ const DForm = () => {
                     color="blue"
                     label="60+"
                     value="60+"
-                    {...register("Age")}
+                    {...register('feedback_giver_age_category')}
                     checked={age === "60+"}
                     onChange={() => handleAgeCheckboxChange("60+")}
                   />
@@ -415,7 +416,7 @@ const DForm = () => {
                   <input
                     className=" peer w-3/4 h-full  font-sans  placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200  border-t-transparent  text-sm px-3 py-2.5 rounded-[7px] border-blue-gray-200 focus:border-gray-900"
                     placeholder=" "
-                    {...register("Contact_number")}
+                    {...register("feedback_giver_contactNumber")}
                   />
                 </div>
               </div>
@@ -430,7 +431,7 @@ const DForm = () => {
                     label="Bangladeshi"
                     value="Bangladeshi"
                     onClick={() => setNationShare("0")}
-                    {...register("nationality")}
+                    {...register('feedback_giver_nationality')}
                     checked={nation === "Bangladeshi"}
                     onChange={() => handleNationCheckboxChange("Bangladeshi")}
                   />
@@ -439,7 +440,6 @@ const DForm = () => {
                     label="Foreigner"
                     value="Foreigner"
                     onClick={() => setNationShare("1")}
-                    {...register("nationality")}
                     checked={nation === "Foreigner"}
                     onChange={() => handleNationCheckboxChange("Foreigner")}
                   />
@@ -452,11 +452,11 @@ const DForm = () => {
                     <input
                       className=" peer w-3/4 h-full  font-sans  placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200  border-t-transparent  text-sm px-3 py-2.5 rounded-[7px] border-blue-gray-200 focus:border-gray-900"
                       placeholder=" "
-                      {...register("Country_Name")}
+                      {...register("feedback_giver_nationality")}
                     />
                   </div>
                 )}
-                {/* TODO  foreigner others kaj*/}
+                
               </div>
               <div>
                 <div className="flex flex-col  mb-5">
@@ -470,7 +470,7 @@ const DForm = () => {
                   <input
                     className=" peer w-3/4 h-full  font-sans  placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200  border-t-transparent  text-sm px-3 py-2.5 rounded-[7px] border-blue-gray-200 focus:border-gray-900"
                     placeholder=" "
-                    {...register("ID")}
+                    {...register("feedback_giver_age_ID")}
                   />
                 </div>
               </div>
@@ -486,7 +486,7 @@ const DForm = () => {
                   <input
                     className=" peer w-3/4 h-full  font-sans  placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200  border-t-transparent  text-sm px-3 py-2.5 rounded-[7px] border-blue-gray-200 focus:border-gray-900"
                     placeholder="  Click to upload file (<10MB)"
-                    {...register("ID")}
+                    {...register("feedback_giver_age_ScanID")}
                   />
                 </div>
               </div>
@@ -499,7 +499,7 @@ const DForm = () => {
                   <input
                     className=" peer w-3/4 h-full  font-sans  placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200  border-t-transparent  text-sm px-3 py-2.5 rounded-[7px] border-blue-gray-200 focus:border-gray-900"
                     placeholder="  adress"
-                    {...register("adress")}
+                    {...register("feedback_giver_age_Adress")}
                   />
                 </div>
               </div>
@@ -515,7 +515,7 @@ const DForm = () => {
           <input
             className=" peer w-3/4 h-full  font-sans  placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200  border-t-transparent  text-sm px-3 py-2.5 rounded-[7px] border-blue-gray-200 focus:border-gray-900"
             placeholder=" "
-            {...register("Issues")}
+            {...register("desIssuesSupport")}
           />
         </div>
 
@@ -533,7 +533,7 @@ Service request"
             value="
             
 Service request"
-            {...register("TypesOfIssus")}
+            {...register("typeIssues")}
             checked={tissues === "Service request"}
             onChange={() => handleTIssuesCheckboxChange("Service request")}
           />
@@ -543,7 +543,7 @@ Service request"
             Information request"
             value="
             Information request"
-            {...register("TypesOfIssus")}
+            {...register("typeIssues")}
             checked={tissues === "Information request"}
             onChange={() => handleTIssuesCheckboxChange("Information request")}
           />
@@ -552,7 +552,7 @@ Service request"
             color="blue"
             label="Complaints"
             value="Complaints"
-            {...register("TypesOfIssus")}
+            {...register("typeIssues")}
             checked={tissues === "Complaints"}
             onChange={() => handleTIssuesCheckboxChange("Complaints")}
           />
@@ -560,7 +560,7 @@ Service request"
             color="blue"
             label="Praise"
             value="Praise"
-            {...register("TypesOfIssus")}
+            {...register("typeIssues")}
             checked={tissues === "Praise"}
             onChange={() => handleTIssuesCheckboxChange("Praise")}
           />
@@ -568,7 +568,7 @@ Service request"
             color="blue"
             label="Suggestion/improvement"
             value="Suggestion/improvement"
-            {...register("TypesOfIssus")}
+            {...register("typeIssues")}
             checked={tissues === "Suggestion/improvement"}
             onChange={() =>
               handleTIssuesCheckboxChange("Suggestion/improvement")
@@ -586,7 +586,7 @@ Service request"
             label="Individual"
             value="Individual"
             onClick={() => setInsd("0")}
-            {...register("AffectedBy")}
+            {...register("incidence")}
             checked={insident === "Individual"}
             onChange={() => handleInsidentCheckboxChange("Individual")}
           />
@@ -595,13 +595,14 @@ Service request"
             label="Community"
             value="Community"
             onClick={() => setInsd("1")}
-            {...register("AffectedBy")}
+            {...register("incidence")}
             checked={insident === "Community"}
             onChange={() => handleInsidentCheckboxChange("Community")}
           />
 
           {insd === "1" && (
-            <div className="flex flex-col  mb-5">
+           <div>
+             <div className="flex flex-col  mb-5">
               <label htmlFor="" className="text-black font-semibold mb-2">
                 <span className="text-3xl text-blue-500">*</span> Number of
                 people affected
@@ -609,9 +610,21 @@ Service request"
               <input
                 className=" peer w-3/4 h-full  font-sans  placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200  border-t-transparent  text-sm px-3 py-2.5 rounded-[7px] border-blue-gray-200 focus:border-gray-900"
                 placeholder=" "
-                {...register("Remark")}
+                {...register("number_of_people_affected")}
               />
             </div>
+             <div className="flex flex-col  mb-5">
+              <label htmlFor="" className="text-black font-semibold mb-2">
+                <span className="text-3xl text-blue-500">*</span> Number of
+                HH affected
+              </label>
+              <input
+                className=" peer w-3/4 h-full  font-sans  placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200  border-t-transparent  text-sm px-3 py-2.5 rounded-[7px] border-blue-gray-200 focus:border-gray-900"
+                placeholder=" "
+                {...register("number_of_hh_affected")}
+              />
+            </div>
+           </div>
           )}
         </div>
 
@@ -624,7 +637,7 @@ Service request"
             color="blue"
             label=" Non sensitive feedback related to BDRCS (15 Days)"
             value=" Non sensitive feedback related to BDRCS (15 Days)"
-            {...register("CategoryOfFeedback")}
+            {...register("categoryOfFeedback")}
             checked={
               categoryFeedback ===
               " Non sensitive feedback related to BDRCS (15 Days)"
@@ -639,7 +652,7 @@ Service request"
             color="blue"
             label="Non sensitive feedback not related to BDRCS (15 Days)"
             value="Non sensitive feedback not related to BDRCS (15 Days)"
-            {...register("CategoryOfFeedback")}
+            {...register("categoryOfFeedback")}
             checked={
               categoryFeedback ===
               "Non sensitive feedback not related to BDRCS (15 Days)"
@@ -654,7 +667,7 @@ Service request"
             color="blue"
             label=" Sensitive feedback related to BDRCS (within 72 hours)"
             value=" Sensitive feedback related to BDRCS (within 72 hours)"
-            {...register("CategoryOfFeedback")}
+            {...register("categoryOfFeedback")}
             checked={
               categoryFeedback ===
               " Sensitive feedback related to BDRCS (within 72 hours)"
@@ -669,7 +682,7 @@ Service request"
             color="blue"
             label="Sensitive feedback not related to BDRCS (within 72 hours)"
             value=" Sensitive feedback not related to BDRCS (within 72 hours)"
-            {...register("CategoryOfFeedback")}
+            {...register("categoryOfFeedback")}
             checked={
               categoryFeedback ===
               "Sensitive feedback not related to BDRCS (within 72 hours)"
@@ -695,7 +708,7 @@ Service request"
             label="Yes"
             value="Yes"
             onClick={() => setBDRCS("1")}
-            {...register("FeedbackProjectIssues")}
+            {...register("feedbackProjectIssues")}
             checked={feedbackProjectIssues === "Yes"}
             onChange={() => handlefeedbackProjectCheckboxChange("Yes")}
           />
@@ -704,7 +717,7 @@ Service request"
             label="No"
             value="No"
             onClick={() => setBDRCS("0")}
-            {...register("FeedbackProjectIssues")}
+            {...register("feedbackProjectIssues")}
             checked={feedbackProjectIssues === "No"}
             onChange={() => handlefeedbackProjectCheckboxChange("No")}
           />
@@ -718,7 +731,7 @@ Service request"
             color="blue"
             label="Bangladesh Enhanced Community Resilience Program"
             value=" Bangladesh Enhanced Community Resilience Program"
-            {...register("Project")}
+            {...register("project")}
             checked={
               ProjectIs ===
               "Bangladesh Enhanced Community Resilience Program"
@@ -733,7 +746,7 @@ Service request"
             color="blue"
             label="BDRCS Cash Readiness Program"
             value=" BDRCS Cash Readiness Program"
-            {...register("Project")}
+            {...register("project")}
             checked={
               ProjectIs ===
               "BDRCS Cash Readiness Program"
@@ -748,7 +761,7 @@ Service request"
             color="blue"
             label="Bhasan Char Operation (BCO)"
             value=" Bhasan Char Operation (BCO)"
-            {...register("Project")}
+            {...register("project")}
             checked={
               ProjectIs ===
               "Bhasan Char Operation (BCO)"
@@ -763,7 +776,7 @@ Service request"
             color="blue"
             label="BMZ-SSF-SDSC (Strengthening DRM Structures and Capacities of BDRCS)-GRC"
             value=" BMZ-SSF-SDSC (Strengthening DRM Structures and Capacities of BDRCS)-GRC"
-            {...register("Project")}
+            {...register("project")}
             checked={
               ProjectIs ===
               "BMZ-SSF-SDSC (Strengthening DRM Structures and Capacities of BDRCS)-GRC"
@@ -778,7 +791,7 @@ Service request"
             color="blue"
             label="Boosting up Climate Education among the Youth of BDRCS (Urban Hub)"
             value=" Boosting up Climate Education among the Youth of BDRCS (Urban Hub)"
-            {...register("Project")}
+            {...register("project")}
             checked={
               ProjectIs ===
               "Boosting up Climate Education among the Youth of BDRCS (Urban Hub)"
@@ -805,7 +818,7 @@ Service request"
             label="Yes"
             value="Yes"
             onClick={()=>setDepartmentIssues("1")}
-            {...register("FeedbackDepartmentIssues")}
+            {...register("feedbackDepartmentIssues")}
             checked={feedbackDepartmentIssues === "Yes"}
             onChange={() => handlefeedbackDepartmentCheckboxChange("Yes")}
           />
@@ -814,7 +827,7 @@ Service request"
             label="No"
             value="No"
             onClick={()=>setDepartmentIssues("0")}
-            {...register("TypesOfIFeedbackDepartmentIssuesssus")}
+            {...register("feedbackDepartmentIssues")}
             checked={feedbackDepartmentIssues === "No"}
             onChange={() => handlefeedbackDepartmentCheckboxChange("No")}
           />
@@ -830,7 +843,7 @@ Service request"
             color="blue"
             label="Community Development (CD)"
             value=" Community Development (CD)"
-            {...register("Department")}
+            {...register('department')}
             checked={
               DepartmentValue ===
               "Community Development (CD)"
@@ -845,7 +858,7 @@ Service request"
             color="blue"
             label="Audit"
             value=" Audit"
-            {...register("Department")}
+            {...register('department')}
             checked={
               DepartmentValue ===
               "Audit"
@@ -860,7 +873,7 @@ Service request"
             color="blue"
             label="Disaster and Climate Risk Management (DCRM)"
             value=" Disaster and Climate Risk Management (DCRM)"
-            {...register("Department")}
+            {...register('department')}
             checked={
               DepartmentValue ===
               "Disaster and Climate Risk Management (DCRM)"
@@ -889,7 +902,7 @@ Service request"
             label="    Disaster risk reduction (DRR)"
             value="    Disaster risk reduction (DRR)"
             
-            {...register("Thermetic_Area")}
+            {...register("indicateThemeAria")}
             checked={thermeticArea === "    Disaster risk reduction (DRR)"}
             onChange={() =>
               handleThermeticAreaCheckboxChange(
@@ -902,7 +915,7 @@ Service request"
             label="Shelter"
             value="Shelter"
             
-            {...register("Thermetic_Area")}
+            {...register("indicateThemeAria")}
             checked={thermeticArea === "Shelter"}
             onChange={() => handleThermeticAreaCheckboxChange("Shelter")}
           />
@@ -911,7 +924,7 @@ Service request"
             label="Livelihood"
             value="Livelihood"
             
-            {...register("Thermetic_Area")}
+            {...register("indicateThemeAria")}
             checked={thermeticArea === "Livelihood"}
             onChange={() => handleThermeticAreaCheckboxChange("Livelihood")}
           />
@@ -920,7 +933,7 @@ Service request"
             label="Health"
             value="Health"
             
-            {...register("Thermetic_Area")}
+            {...register("indicateThemeAria")}
             checked={thermeticArea === "Health"}
             onChange={() => handleThermeticAreaCheckboxChange("Health")}
           />
@@ -929,7 +942,7 @@ Service request"
             label="  Mental health and PSS"
             value="  Mental health and PSS"
             
-            {...register("Thermetic_Area")}
+            {...register("indicateThemeAria")}
             checked={thermeticArea === "  Mental health and PSS"}
             onChange={() =>
               handleThermeticAreaCheckboxChange("  Mental health and PSS")
@@ -940,7 +953,7 @@ Service request"
             label="Immunization service"
             value="Immunization service"
             
-            {...register("Thermetic_Area")}
+            {...register("indicateThemeAria")}
             checked={thermeticArea === "Immunization service"}
             onChange={() =>
               handleThermeticAreaCheckboxChange("Immunization service")
@@ -951,7 +964,7 @@ Service request"
             label="Wash"
             value="Wash"
             
-            {...register("Thermetic_Area")}
+            {...register("indicateThemeAria")}
             checked={thermeticArea === "Wash"}
             onChange={() => handleThermeticAreaCheckboxChange("Wash")}
           />
@@ -960,7 +973,7 @@ Service request"
             label="Migration and displacement"
             value="Migration and displacement"
             
-            {...register("Thermetic_Area")}
+            {...register("indicateThemeAria")}
             checked={thermeticArea === "Migration and displacement"}
             onChange={() =>
               handleThermeticAreaCheckboxChange("Migration and displacement")
@@ -971,7 +984,7 @@ Service request"
             label="Climate risk"
             value="Climate risk"
             
-            {...register("Thermetic_Area")}
+            {...register("indicateThemeAria")}
             checked={thermeticArea === "Climate risk"}
             onChange={() => handleThermeticAreaCheckboxChange("Climate risk")}
           />
@@ -980,7 +993,7 @@ Service request"
             label="Heatwave risk reduction, preparedness or response"
             value="Heatwave risk reduction, preparedness or response"
             
-            {...register("Thermetic_Area")}
+            {...register("indicateThemeAria")}
             checked={
               thermeticArea ===
               "Heatwave risk reduction, preparedness or response"
@@ -996,7 +1009,7 @@ Service request"
             label=" Cash transfer"
             value=" Cash transfer"
             
-            {...register("Thermetic_Area")}
+            {...register("indicateThemeAria")}
             checked={thermeticArea === " Cash transfer"}
             onChange={() => handleThermeticAreaCheckboxChange(" Cash transfer")}
           />
@@ -1005,7 +1018,7 @@ Service request"
             label="Protection, Gender and inclusion"
             value="Protection, Gender and inclusion"
             
-            {...register("Thermetic_Area")}
+            {...register("indicateThemeAria")}
             checked={thermeticArea === "Protection, Gender and inclusion"}
             onChange={() =>
               handleThermeticAreaCheckboxChange(
@@ -1018,7 +1031,7 @@ Service request"
             label=" Not related to above thematic area"
             value=" Not related to above thematic area"
             
-            {...register("Thermetic_Area")}
+            {...register("indicateThemeAria")}
             checked={thermeticArea === " Not related to above thematic area"}
             onChange={() =>
               handleThermeticAreaCheckboxChange(
@@ -1038,7 +1051,7 @@ Service request"
             label="Distribution process"
             value="Distribution process"
             onClick={()=>setComplain("0")}
-            {...register("CategoryOf_Complain")}
+            {...register("categoryOfComplaint")}
             checked={categoryofComplain === "Distribution process"}
             onChange={() =>
               handleCategoryOfComplainCheckboxChange("Distribution process")
@@ -1049,7 +1062,7 @@ Service request"
             label="Misbehave, fraud and corruption by community members"
             value="Misbehave, fraud and corruption by community members"
             onClick={()=>setComplain("0")}
-            {...register("CategoryOf_Complain")}
+            {...register("categoryOfComplaint")}
             checked={
               categoryofComplain ===
               "Misbehave, fraud and corruption by community members"
@@ -1065,7 +1078,7 @@ Service request"
             label="Positive feedback about RC"
             value="Positive feedback about RC"
             onClick={()=>setComplain("0")}
-            {...register("CategoryOf_Complain")}
+            {...register("categoryOfComplaint")}
             checked={categoryofComplain === "Positive feedback about RC"}
             onChange={() =>
               handleCategoryOfComplainCheckboxChange(
@@ -1078,7 +1091,7 @@ Service request"
             label="Protection issue (Community to community)"
             value="Protection issue (Community to community)"
             onClick={()=>setComplain("0")}
-            {...register("CategoryOf_Complain")}
+            {...register("categoryOfComplaint")}
             checked={
               categoryofComplain === "Protection issue (Community to community)"
             }
@@ -1093,7 +1106,7 @@ Service request"
             label="PSEA concern (Staff/vendor/volunteer with the community)"
             value="PSEA concern (Staff/vendor/volunteer with the community)"
             onClick={()=>setComplain("0")}
-            {...register("CategoryOf_Complain")}
+            {...register("categoryOfComplaint")}
             checked={
               categoryofComplain ===
               "PSEA concern (Staff/vendor/volunteer with the community)"
@@ -1109,7 +1122,7 @@ Service request"
             label="Selection process: Area/ beneficiary"
             value="Selection process: Area/ beneficiary"
             onClick={()=>setComplain("0")}
-            {...register("CategoryOf_Complain")}
+            {...register("categoryOfComplaint")}
             checked={
               categoryofComplain === "Selection process: Area/ beneficiary"
             }
@@ -1124,7 +1137,7 @@ Service request"
             label="Suggestion to improve RC Program"
             value="Suggestion to improve RC Program"
             onClick={()=>setComplain("0")}
-            {...register("CategoryOf_Complain")}
+            {...register("categoryOfComplaint")}
             checked={categoryofComplain === "Suggestion to improve RC Program"}
             onChange={() =>
               handleCategoryOfComplainCheckboxChange(
@@ -1137,7 +1150,6 @@ Service request"
             label="Others"
             value="Others"
             onClick={()=>setComplain("1")}
-            {...register("CategoryOf_Complain")}
             checked={categoryofComplain === "Others"}
             onChange={() => handleCategoryOfComplainCheckboxChange("Others")}
           />
@@ -1152,7 +1164,7 @@ Service request"
           <input
             className=" peer w-3/4 h-full  font-sans  placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200  border-t-transparent  text-sm px-3 py-2.5 rounded-[7px] border-blue-gray-200 focus:border-gray-900"
             placeholder=" "
-            {...register("CategoryOf_Complain")}
+            {...register("categoryOfComplaint")}
           />
         </div> 
               </div>
@@ -1168,7 +1180,7 @@ Service request"
           <input
             className=" peer w-3/4 h-full  font-sans  placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200  border-t-transparent  text-sm px-3 py-2.5 rounded-[7px] border-blue-gray-200 focus:border-gray-900"
             placeholder=" "
-            {...register("Instant_Response",{required:true})}
+            {...register("instantResponse",{required:true})}
           />
         </div>
       
@@ -1192,7 +1204,7 @@ Service request"
             label="Open"
             value="Open"
             
-            {...register("StatusOf_feedback")}
+            {...register("status")}
             checked={statusOfFeedback === "Open"}
             onChange={() => handleStatusOfFeedbackCheckboxChange("Open")}
           />
@@ -1201,7 +1213,7 @@ Service request"
             label="Closed"
             value="Closed"
             
-            {...register("StatusOf_feedback")}
+            {...register("status")}
             checked={statusOfFeedback === "Closed"}
             onChange={() => handleStatusOfFeedbackCheckboxChange("Closed")}
           />
@@ -1210,7 +1222,7 @@ Service request"
             label="Reffered"
             value="Reffered"
             
-            {...register("StatusOf_feedback")}
+            {...register("status")}
             checked={statusOfFeedback === "Reffered"}
             onChange={() => handleStatusOfFeedbackCheckboxChange("Reffered")}
           />
@@ -1225,7 +1237,7 @@ Service request"
             label="Yes"
             value="Yes"
             onClick={()=>setDisabilityValue("1")}
-            {...register("disability")}
+            {...register('anyDisability')}
             checked={disability === "Yes"}
             onChange={() => handleDisabilityCheckboxChange("Yes")}
           />
@@ -1234,7 +1246,7 @@ Service request"
             label="No"
             value="No"
             onClick={()=>setDisabilityValue("0")}
-            {...register("disability")}
+            {...register('anyDisability')}
             checked={disability === "No"}
             onChange={() => handleDisabilityCheckboxChange("No")}
           />
@@ -1253,7 +1265,7 @@ Service request"
             label="Seeing"
             value="Seeing"
             
-            {...register("KindOf_disability")}
+            {...register("kind_of_disabilities")}
             checked={kinddisability === "Seeing"}
             onChange={() => handleKindDisabilityCheckboxChange("Seeing")}
           />
@@ -1262,7 +1274,7 @@ Service request"
             label="Hearing"
             value="Hearing"
             
-            {...register("KindOf_disability")}
+            {...register("kind_of_disabilities")}
             checked={kinddisability === "Hearing"}
             onChange={() => handleKindDisabilityCheckboxChange("Hearing")}
           />
@@ -1271,7 +1283,7 @@ Service request"
             label="Walking"
             value="Walking"
             
-            {...register("KindOf_disability")}
+            {...register("kind_of_disabilities")}
             checked={kinddisability === "Walking"}
             onChange={() => handleKindDisabilityCheckboxChange("Walking")}
           />
@@ -1280,7 +1292,7 @@ Service request"
             label="Cognition"
             value="Cognition"
             
-            {...register("KindOf_disability")}
+            {...register("kind_of_disabilities")}
             checked={kinddisability === "Cognition"}
             onChange={() => handleKindDisabilityCheckboxChange("Cognition")}
           />
@@ -1289,7 +1301,7 @@ Service request"
             label="Self-care"
             value="Self-care"
             
-            {...register("KindOf_disability")}
+            {...register("kind_of_disabilities")}
             checked={kinddisability === "Self-care"}
             onChange={() => handleKindDisabilityCheckboxChange("Self-care")}
           />
@@ -1298,7 +1310,7 @@ Service request"
             label="Communication"
             value="Communication"
             
-            {...register("KindOf_disability")}
+            {...register("kind_of_disabilities")}
             checked={kinddisability === "Communication"}
             onChange={() => handleKindDisabilityCheckboxChange("Communication")}
           />
@@ -1317,7 +1329,7 @@ Service request"
           <input
             className=" peer w-3/4 h-full  font-sans  placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200  border-t-transparent  text-sm px-3 py-2.5 rounded-[7px] border-blue-gray-200 focus:border-gray-900"
             placeholder=" "
-            {...register("Remark")}
+            {...register("remark")}
           />
         </div> 
         <div className="flex gap-4 justify-center mt-20">
