@@ -40,9 +40,6 @@ const DForm = () => {
   const handleDisabilityCheckboxChange = (value) => {
     setDisability(value);
   };
-  // const handleComplainCheckboxChange = (value) => {
-  //   setComplain(value);
-  // };
   const handleInsidentCheckboxChange = (value) => {
     setInsident(value);
   };
@@ -53,8 +50,6 @@ const DForm = () => {
   const handleDepartmentCheckboxChange = (value) => {
    setDepartmentValue(value);
   };
-
-  // console.log(disability, value);
 
   const handleAgeCheckboxChange = (value) => {
     setAge(value);
@@ -1325,9 +1320,6 @@ Service request"
             {...register("Remark")}
           />
         </div> 
-        
-        
-
         <div className="flex gap-4 justify-center mt-20">
           {/* <button type="submit">Submit</button> */}
           <Button
